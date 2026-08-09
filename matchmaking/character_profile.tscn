@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bafetgypjrae8"]
+
+[ext_resource type="Texture2D" uid="uid://b6lexmmbbgk0k" path="res://assets/characters/heads/blank.png" id="1_5p6r4"]
+[ext_resource type="Script" uid="uid://b0vca0v2vy8fn" path="res://matchmaking/character_profile.gd" id="1_q68yo"]
+
+[sub_resource type="Gradient" id="Gradient_5p6r4"]
+offsets = PackedFloat32Array(0.5989011, 0.62637365)
+colors = PackedColorArray(0.85164833, 0.85164833, 0.85164833, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m2s60"]
+gradient = SubResource("Gradient_5p6r4")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="CharacterProfile" type="Control" unique_id=1492699677]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q68yo")
+
+[node name="Panel" type="Panel" parent="." unique_id=62064966]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Head" type="TextureRect" parent="." unique_id=397712707]
+layout_mode = 0
+offset_left = -54.0
+offset_right = 146.0
+offset_bottom = 350.0
+scale = Vector2(1.4720736, 1.4720736)
+texture = ExtResource("1_5p6r4")
+
+[node name="Ready" type="TextureRect" parent="." unique_id=1770236698]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+texture = SubResource("GradientTexture2D_m2s60")
+
+[node name="Name" type="Label" parent="." unique_id=223480831]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Mr Green"
+horizontal_alignment = 1

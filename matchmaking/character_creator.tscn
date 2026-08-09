@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://ba14m51ik4tpc"]
+
+[ext_resource type="Script" uid="uid://bddnwsjgmmpuq" path="res://matchmaking/character_creator.gd" id="1_6cvto"]
+[ext_resource type="Theme" uid="uid://6wcsoq3jg0eb" path="res://assets/themes/void.tres" id="1_e00t8"]
+[ext_resource type="Texture2D" uid="uid://b6lexmmbbgk0k" path="res://assets/characters/heads/blank.png" id="2_qjcmr"]
+[ext_resource type="Texture2D" uid="uid://i3c01m8wtu8k" path="res://assets/characters/bodies/blank.png" id="3_e00t8"]
+
+[node name="CharacterCreator" type="Control" unique_id=1792724975]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -200.0
+offset_right = 125.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_e00t8")
+script = ExtResource("1_6cvto")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=278835368]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Name" type="HBoxContainer" parent="VBoxContainer" unique_id=113012742]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="OptionButton" parent="VBoxContainer/Name" unique_id=1949194348]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+selected = 0
+item_count = 4
+popup/item_0/text = "Mr"
+popup/item_0/id = 0
+popup/item_1/text = "Ms"
+popup/item_1/id = 1
+popup/item_2/text = "Mrs"
+popup/item_2/id = 2
+popup/item_3/text = "Mx"
+popup/item_3/id = 3
+
+[node name="Color" type="OptionButton" parent="VBoxContainer/Name" unique_id=1551301750]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+selected = 0
+item_count = 6
+popup/item_0/text = "Red"
+popup/item_0/id = 0
+popup/item_1/text = "Green"
+popup/item_1/id = 1
+popup/item_2/text = "Blue"
+popup/item_2/id = 2
+popup/item_3/text = "Orange"
+popup/item_3/id = 3
+popup/item_4/text = "Yellow"
+popup/item_4/id = 4
+popup/item_5/text = "Purple"
+popup/item_5/id = 5
+
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=1098239078]
+custom_minimum_size = Vector2(300, 350)
+layout_mode = 2
+
+[node name="Head" type="TextureRect" parent="VBoxContainer/Control" unique_id=1525087036]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 250.0
+offset_bottom = 350.0
+texture = ExtResource("2_qjcmr")
+
+[node name="Left" type="Button" parent="VBoxContainer/Control/Head" unique_id=1177206767]
+layout_mode = 0
+offset_left = -50.0
+offset_top = 25.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 32
+text = "<"
+
+[node name="Right" type="Button" parent="VBoxContainer/Control/Head" unique_id=1204128976]
+layout_mode = 0
+offset_left = 199.0
+offset_top = 25.0
+offset_right = 225.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 32
+text = ">"
+
+[node name="Body" type="TextureRect" parent="VBoxContainer/Control" unique_id=1592020305]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 250.0
+offset_bottom = 350.0
+texture = ExtResource("3_e00t8")
+
+[node name="Left" type="Button" parent="VBoxContainer/Control/Body" unique_id=1745169294]
+layout_mode = 0
+offset_left = -50.0
+offset_top = 175.0
+offset_bottom = 236.0
+theme_override_font_sizes/font_size = 32
+text = "<"
+
+[node name="Right" type="Button" parent="VBoxContainer/Control/Body" unique_id=659473078]
+layout_mode = 0
+offset_left = 199.0
+offset_top = 175.0
+offset_right = 225.0
+offset_bottom = 228.0
+theme_override_font_sizes/font_size = 32
+text = ">"
