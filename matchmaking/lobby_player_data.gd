@@ -1,10 +1,18 @@
 class_name LobbyPlayerData
 extends RefCounted
 
-var name: String
-var icon: Texture2D
+const _profile_scene := preload("res://matchmaking/character_profile.tscn")
+
+var info: PlayerInfo
+var profile: CharacterProfile
 var ready: bool
 
-func _init(n: String, i: Texture2D):
-    name = n
-    icon = i
+func _init(i: PlayerInfo):
+    info = i
+    profile = _profile_scene.instantiate()
+    profile.name = info.name()
+
+
+func set_color(color: PlayerColor.Type):
+    info.player_color = color
+    profile.set_color(color)

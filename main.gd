@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func _start_game_pressed() -> void:
-	pass
+	Lobby.load()
 
 
 func _join_game_pressed() -> void:
