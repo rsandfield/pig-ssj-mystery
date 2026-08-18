@@ -1,0 +1,14 @@
+[config]
+version=1
+
+[launcher]
+version=1.10.0
+
+[project]
+last_opened=2026-08-18T01:06:33.225Z
+
+[editor]
+channel=official
+flavor=gdscript
+base_version=4.7
+version=4.7-stable

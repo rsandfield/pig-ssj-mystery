@@ -54,3 +54,7 @@ static func to_name(player_color: Type) -> String:
 
 static func from_string(text: String) -> Type:
 	return Type.get(text.to_upper())
+
+
+static func from_int(i: int) -> Type:
+	return Type.values()[i]

@@ -63,17 +63,32 @@ func init(lobby_id: String = ""):
 func _ready() -> void:
 	_exit_lobby.pressed.connect(_on_exit_lobby)
 	_ready_up.pressed.connect(_on_ready)
+	_connect_character_creator()
 
 	for p in _players_ui.get_children():
 		p.queue_free()
 
 
+func _connect_character_creator():
+	_creator.title_changed.connect(_local_title_changed)
+	_creator.color_changed.connect(_local_color_changed)
+	_creator.head_changed.connect(_local_head_changed)
+	_creator.body_changed.connect(_local_body_changed)
+
+
 func _on_exit_lobby():
-	pass
+	get_tree().change_scene_to_file("res://main.tscn")
 
 
 func _on_ready():
-	pass
+	var player: LobbyPlayerData = _player_list[MatchClient.local_player.player_id]
+	player.ready = !player.ready
+	_client.send_message({
+		"event": "player_ready",
+		"playerId": MatchClient.local_player.player_id,
+		"lobbyId": _lobby_id,
+		"ready": player.ready,
+	})
 
 
 func _set_lobby_data(lobby_id: String, player_id: int, data: Dictionary):
@@ -107,12 +122,52 @@ func _player_disconnected(id: int):
 	_player_list.erase(id)
 
 
+func _local_color_changed(c: PlayerColor.Type):
+	_client.send_message({
+		"event": "player_details_changed",
+		"playerId": MatchClient.local_player.player_id,
+		"lobbyId": _lobby_id,
+		"oldColor": PlayerColor.to_name(MatchClient.local_player.player_color),
+		"newColor": PlayerColor.to_name(c),
+	})
+
+
+func _local_title_changed(title: PlayerTitle.Type):
+	_client.send_message({
+		"event": "player_details_changed",
+		"playerId": MatchClient.local_player.player_id,
+		"lobbyId": _lobby_id,
+		"oldTitle": PlayerTitle.to_name(MatchClient.local_player.title),
+		"newTitle": PlayerTitle.to_name(title),
+	})
+
+
+func _local_head_changed(index: int):
+	_client.send_message({
+		"event": "player_details_changed",
+		"playerId": MatchClient.local_player.player_id,
+		"lobbyId": _lobby_id,
+		"oldHead": MatchClient.local_player.head,
+		"newHead": index,
+	})
+
+
+func _local_body_changed(index: int):
+	_client.send_message({
+		"event": "player_details_changed",
+		"playerId": MatchClient.local_player.player_id,
+		"lobbyId": _lobby_id,
+		"oldBody": MatchClient.local_player.body,
+		"newBody": index,
+	})
+
+
 func _handle_message(msg: Dictionary):
 	match msg.get("event"):
 		# "lobby_joined":
 		# 	_set_lobby_data(msg.get("lobbyId"), msg.get("playerId"), msg.get("data"))
-		"player_color_changed":
-			_handle_player_color_changed(msg)
+		"player_details_changed":
+			_handle_player_details_changed(msg)
 		"player_color_change_rejected":
 			_handle_player_color_change_rejected(msg)
 		"player_ready":
@@ -136,23 +191,44 @@ func _handle_player_profile_changed(msg: Dictionary):
 		_player_list[player_id].info.accessory = accessory
 
 
-func _handle_player_color_changed(msg: Dictionary):
-	var new_color := PlayerColor.from_string(msg.get("newColor"))
-	if !_color_is_available(new_color):
-		if MatchClient.local_player.host:
-			var old_color = msg.get("oldColor")
-			var player_id = msg.get("playerId")
-			if !_color_is_available(old_color) && _player_list[player_id].info.player_color != old_color:
-				old_color = _first_available_color()
-			_client.send_message({
-				"event": "player_color_change_rejected",
-				"playerId": player_id,
-				"lobbyId": _lobby_id,
-				"oldColor": PlayerColor.to_name(old_color),
-				"newColor": msg.get("newColor"),
-			})
+func _handle_player_details_changed(msg: Dictionary):
+	var player = _player_list[msg.get("playerId")]
+	
+	if msg.has("newTitle"):
+		player.info.title = PlayerTitle.from_string(msg.get("newTitle"))
+		player.profile.character_name = player.info.name()
+
+	if msg.has("newBody"):
+		player.info.body = msg.get("newBody")
+		player.profile.set_body(player.info.body)
+		player.profile.character_name = player.info.name()
+
+	if msg.has("newHead"):
+		player.info.head = msg.get("newHead")
+		player.profile.set_head(player.info.head)
+		player.profile.character_name = player.info.name()
+
+	if !msg.has("newColor"):
 		return
-	_player_list[msg.get("playerId")].set_color(new_color)
+	var new_color := PlayerColor.from_string(msg.get("newColor"))
+	if _color_is_available(new_color):
+		player.set_color(new_color)
+		player.profile.set_color(new_color)
+		player.profile.character_name = player.info.name()
+		return
+
+	if MatchClient.local_player.host:
+		var old_color = msg.get("oldColor")
+		var player_id = msg.get("playerId")
+		if !_color_is_available(old_color) && _player_list[player_id].info.player_color != old_color:
+			old_color = _first_available_color()
+		_client.send_message({
+			"event": "player_color_change_rejected",
+			"playerId": player_id,
+			"lobbyId": _lobby_id,
+			"oldColor": PlayerColor.to_name(old_color),
+			"newColor": msg.get("newColor"),
+		})
 	
 
 func _color_is_available(color: PlayerColor.Type) -> bool:
@@ -181,7 +257,7 @@ func _handle_player_color_change_rejected(msg: Dictionary):
 
 func _handle_player_ready(msg: Dictionary):
 	var id = msg.get("playerId") as int
-	_player_list[id].info.ready = msg.get("ready") as bool
+	_player_list[id].ready = msg.get("ready") as bool
 
 
 func _handle_match_start(msg: Dictionary):

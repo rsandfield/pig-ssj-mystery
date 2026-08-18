@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i3c01m8wtu8k"
-path="res://.godot/imported/blank.png-736b07684bc3e255627b29ec931016a3.ctex"
+uid="uid://ctqfwtfod6tuy"
+path="res://.godot/imported/Head 5 uncropped.png-fe0dec07db3643e4e0750fda5bb0c7c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/bodies/blank.png"
-dest_files=["res://.godot/imported/blank.png-736b07684bc3e255627b29ec931016a3.ctex"]
+source_file="res://assets/characters/heads/uncropped/Head 5 uncropped.png"
+dest_files=["res://.godot/imported/Head 5 uncropped.png-fe0dec07db3643e4e0750fda5bb0c7c4.ctex"]
 
 [params]
 

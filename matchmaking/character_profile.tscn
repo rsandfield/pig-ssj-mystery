@@ -1,7 +1,21 @@
 [gd_scene format=3 uid="uid://bafetgypjrae8"]
 
-[ext_resource type="Texture2D" uid="uid://b6lexmmbbgk0k" path="res://assets/characters/heads/blank.png" id="1_5p6r4"]
 [ext_resource type="Script" uid="uid://b0vca0v2vy8fn" path="res://matchmaking/character_profile.gd" id="1_q68yo"]
+[ext_resource type="Texture2D" uid="uid://cd1echg3lw10b" path="res://assets/characters/heads/Head 1 cropped.png" id="2_q68yo"]
+[ext_resource type="Texture2D" uid="uid://c4xamo2rdbdwc" path="res://assets/characters/bodies/trench/primary.png" id="3_0d0vk"]
+[ext_resource type="Texture2D" uid="uid://chn01x3nlicn0" path="res://assets/characters/bodies/trench/accessory.png" id="4_3as0e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0d0vk"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="Gradient" id="Gradient_5p6r4"]
 offsets = PackedFloat32Array(0.5989011, 0.62637365)
@@ -13,6 +27,18 @@ width = 32
 height = 32
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q68yo"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.8980392)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [node name="CharacterProfile" type="Control" unique_id=1492699677]
 custom_minimum_size = Vector2(200, 200)
@@ -27,22 +53,50 @@ grow_vertical = 2
 script = ExtResource("1_q68yo")
 
 [node name="Panel" type="Panel" parent="." unique_id=62064966]
+clip_children = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0d0vk")
 
-[node name="Head" type="TextureRect" parent="." unique_id=397712707]
+[node name="Head" type="TextureRect" parent="Panel" unique_id=1354772265]
+unique_name_in_owner = true
 layout_mode = 0
-offset_left = -54.0
-offset_right = 146.0
-offset_bottom = 350.0
-scale = Vector2(1.4720736, 1.4720736)
-texture = ExtResource("1_5p6r4")
+offset_left = 33.5
+offset_top = 25.5
+offset_right = 164.5
+offset_bottom = 156.5
+texture = ExtResource("2_q68yo")
+expand_mode = 5
+
+[node name="Body" type="TextureRect" parent="Panel" unique_id=1789978865]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_left = -2.0
+offset_top = 6.0
+offset_right = 198.0
+offset_bottom = 356.0
+texture = ExtResource("3_0d0vk")
+expand_mode = 5
+
+[node name="Accessory" type="TextureRect" parent="Panel" unique_id=1262918042]
+unique_name_in_owner = true
+modulate = Color(0.7058824, 0, 0, 1)
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_left = -2.0
+offset_top = 6.0
+offset_right = 198.0
+offset_bottom = 356.0
+texture = ExtResource("4_3as0e")
+expand_mode = 5
 
 [node name="Ready" type="TextureRect" parent="." unique_id=1770236698]
+unique_name_in_owner = true
 modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 1
@@ -53,7 +107,21 @@ offset_bottom = 40.0
 grow_horizontal = 0
 texture = SubResource("GradientTexture2D_m2s60")
 
-[node name="Name" type="Label" parent="." unique_id=223480831]
+[node name="Panel2" type="Panel" parent="." unique_id=1138401332]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_q68yo")
+
+[node name="Name" type="Label" parent="Panel2" unique_id=223480831]
+unique_name_in_owner = true
+modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
