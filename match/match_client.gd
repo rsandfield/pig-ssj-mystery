@@ -5,7 +5,7 @@ signal player_disconnected(peer_id: int)
 signal lobby_disconnected
 
 const SERVER_PORT = 8090
-const MATCHMAKER_ADDRESS = "http://localhost:8080" # IPv4 localhost
+const MATCHMAKER_ADDRESS = "http://127.0.0.1:8080" # IPv4 localhost
 const MAX_CONNECTIONS = 20
 const ICE_CONFIG = { "iceServers": [{ "urls": ["stun:stun.l.google.com:19302"] }] }
 

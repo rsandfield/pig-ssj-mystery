@@ -9,6 +9,8 @@ extends Control
 			_name_tag.text = value
 @onready var _name_tag: Label = %Name
 @export var _color: PlayerColor.Type
+var _is_ready: bool
+var _is_bot: bool
 
 
 func _ready() -> void:
@@ -31,7 +33,20 @@ func set_color(color: PlayerColor.Type):
 
 
 func set_ready(value: bool):
-	if value:
+	_is_ready = value
+	_modulate()
+
+
+func set_bot(value: bool):
+	_is_bot = value
+	_modulate()
+
+
+func _modulate():
+	if _is_bot:
+		%Ready.modulate = Color.BLUE
+		return
+	if _is_ready:
 		%Ready.modulate = Color.GREEN
 	else:
 		%Ready.modulate = Color.RED

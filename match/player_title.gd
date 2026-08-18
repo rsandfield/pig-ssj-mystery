@@ -23,6 +23,10 @@ enum Type {
 const BASIC: Array[Type] = [Type.MR, Type.MS, Type.MRS, Type.MX]
 
 
+static func get_random_basic_title() -> Type:
+	return BASIC[randi() % len(BASIC)]
+
+
 static func to_name(t: Type) -> String:
 	return Type.keys()[t].capitalize()
 

@@ -25,19 +25,31 @@ func _populate_images():
 		_accessories.append(load(folder_path + "/accessory.png"))
 
 
-static func get_head(index: int) -> Texture2D:
+static func _ensure_instance():
 	if !_instance:
 		_instance = CharacterImageRegistry.new()
+
+
+static func get_random_head_index() -> int:
+	_ensure_instance()
+	return randi() % len(_instance._heads)
+
+
+static func get_random_body_index() -> int:
+	_ensure_instance()
+	return randi() % len(_instance._primaries)
+
+
+static func get_head(index: int) -> Texture2D:
+	_ensure_instance()
 	return _instance._heads[index % len(_instance._heads)]
 
 
 static func get_body(index: int) -> Texture2D:
-	if !_instance:
-		_instance = CharacterImageRegistry.new()
+	_ensure_instance()
 	return _instance._primaries[index % len(_instance._primaries)]
 
 
 static func get_accessory(index: int) -> Texture2D:
-	if !_instance:
-		_instance = CharacterImageRegistry.new()
+	_ensure_instance()
 	return _instance._accessories[index % len(_instance._accessories)]

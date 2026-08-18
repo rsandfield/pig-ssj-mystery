@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://6wcsoq3jg0eb" path="res://assets/themes/void.tres" id="1_oge2c"]
 [ext_resource type="Script" uid="uid://de5w1qyqp0e4s" path="res://matchmaking/lobby.gd" id="2_21hcj"]
 [ext_resource type="PackedScene" uid="uid://ba14m51ik4tpc" path="res://matchmaking/character_creator.tscn" id="3_bymyu"]
+[ext_resource type="PackedScene" uid="uid://d14krrye05o62" path="res://matchmaking/count.tscn" id="3_l4lru"]
 [ext_resource type="PackedScene" uid="uid://bafetgypjrae8" path="res://matchmaking/character_profile.tscn" id="4_21hcj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21hcj"]
@@ -26,6 +27,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Count" parent="." unique_id=667214734 instance=ExtResource("3_l4lru")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 230.0
+offset_right = 350.0
+offset_bottom = 290.0
+
+[node name="Label" type="Label" parent="Count" unique_id=509022168]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.0
+offset_top = -40.0
+offset_right = 56.0
+offset_bottom = 5.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Players"
+horizontal_alignment = 1
+
 [node name="LobbyID" type="Label" parent="." unique_id=6993763]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 0
@@ -36,16 +58,6 @@ offset_bottom = 188.0
 theme_override_font_sizes/font_size = 64
 text = "????"
 horizontal_alignment = 1
-
-[node name="Ready" type="Button" parent="." unique_id=464098734]
-unique_name_in_owner = true
-layout_mode = 1
-offset_left = 80.0
-offset_top = 240.0
-offset_right = 270.0
-offset_bottom = 301.0
-theme_override_font_sizes/font_size = 32
-text = "Ready"
 
 [node name="CharacterCreator" parent="." unique_id=1792724975 instance=ExtResource("3_bymyu")]
 layout_mode = 1
@@ -61,6 +73,20 @@ offset_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 0
 offset_transform_position = Vector2(25, 0)
+
+[node name="Ready" type="Button" parent="." unique_id=464098734]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = -70.0
+offset_right = 270.0
+offset_bottom = -9.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Ready"
 
 [node name="Players" type="GridContainer" parent="." unique_id=1063636617]
 unique_name_in_owner = true
@@ -98,7 +124,7 @@ _color = 4
 
 [node name="CharacterProfile6" parent="Players" unique_id=1864559802 instance=ExtResource("4_21hcj")]
 layout_mode = 2
-character_name = "Mr Violet"
+character_name = "Ms Violet"
 _color = 5
 
 [node name="CharacterProfile7" parent="Players" unique_id=1724023060 instance=ExtResource("4_21hcj")]

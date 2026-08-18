@@ -37,11 +37,17 @@ grow_vertical = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="StartGame" type="Button" parent="VBoxContainer" unique_id=1650139962]
+[node name="SinglePlayer" type="Button" parent="VBoxContainer" unique_id=1650139962]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Start Game"
+text = "Single Player"
+
+[node name="NewLobby" type="Button" parent="VBoxContainer" unique_id=1837132421]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "New Lobby"
 
 [node name="JoinGame" type="Button" parent="VBoxContainer" unique_id=814078430]
 unique_name_in_owner = true
