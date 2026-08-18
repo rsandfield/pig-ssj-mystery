@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func _single_player_pressed() -> void:
-	pass
+	Lobby.load_single_player()
 
 
 func _new_lobby_pressed() -> void:

@@ -1,19 +1,10 @@
 class_name MatchmakingClient
-extends Node
+extends BaseMatchmakingClient
 
 const MATCHMAKER_URL = "localhost:8080"
 const SERVER_PORT = 8090
 
 
-signal lobby_created(id: String)
-signal lobby_disconnected()
-signal lobby_joined(id: String, data: Dictionary)
-signal player_joined(id: String, data: Dictionary)
-signal player_disconnected(id: String)
-signal message_recieved(data: Dictionary)
-
-
-var ws: WebSocketPeer
 var _player_id: int
 
 func _init() -> void:

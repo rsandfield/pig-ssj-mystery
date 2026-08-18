@@ -14,7 +14,7 @@ static var _lobby_scene_prefab := preload("res://matchmaking/lobby.tscn")
 
 var _next_bot_id: int = -1
 var _player_list: Dictionary[int, LobbyPlayerData] = {}
-var _client: MatchmakingClient
+var _client: BaseMatchmakingClient
 var _lobby_id: String:
 	set(value):
 		_lobby_id = value
@@ -22,12 +22,23 @@ var _lobby_id: String:
 
 
 static func load(lobby_id: String = "") -> void:
+	_load_lobby(lobby_id)
+
+
+static func load_single_player() -> void:
+	_load_lobby("", true)
+
+
+static func _load_lobby(lobby_id: String = "", single_player: bool = false) -> void:
 	var lobby = _lobby_scene_prefab.instantiate()
-	lobby.init(lobby_id)
+	if single_player:
+		lobby.init_single_player()
+	else:
+		lobby.init(lobby_id)
 
 	var tree = Engine.get_main_loop()
 	var old_scene = tree.current_scene
-	
+
 	tree.root.add_child(lobby)
 	tree.current_scene = lobby
 
@@ -35,15 +46,18 @@ static func load(lobby_id: String = "") -> void:
 		old_scene.queue_free()
 
 
+func init_single_player() -> void:
+	MatchClient.local_player.host = true
+	_client = SinglePlayerClient.new()
+	add_child(_client)
+	_connect_client_signals()
+	_client.connect_to_matchmaker(MatchClient.local_player.name())
+
+
 func init(lobby_id: String = ""):
 	_client = MatchmakingClient.new()
 	add_child(_client)
-
-	_client.lobby_joined.connect(_set_lobby_data)
-	_client.lobby_disconnected.connect(_lobby_disconnnected)
-	_client.player_joined.connect(_player_connected)
-	_client.player_disconnected.connect(_player_disconnected)
-	_client.message_recieved.connect(_handle_message)
+	_connect_client_signals()
 
 	if lobby_id:
 		print("Joining lobby %s" % lobby_id)
@@ -58,11 +72,22 @@ func init(lobby_id: String = ""):
 	MatchClient.player_disconnected.connect(_player_disconnected)
 
 
+func _connect_client_signals():
+	_client.lobby_joined.connect(_set_lobby_data)
+	_client.lobby_disconnected.connect(_lobby_disconnnected)
+	_client.player_joined.connect(_player_connected)
+	_client.player_disconnected.connect(_player_disconnected)
+	_client.message_recieved.connect(_handle_message)
+
+
 func _ready() -> void:
 	_exit_lobby.pressed.connect(_on_exit_lobby)
 	_ready_up.pressed.connect(_local_ready)
 	_connect_character_creator()
 	_player_count.value_changed.connect(_update_player_count)
+
+	if _client is SinglePlayerClient:
+		_ready_up.text = "Start"
 
 	for p in _players_ui.get_children():
 		p.queue_free()
@@ -357,6 +382,12 @@ func _handle_player_ready(msg: Dictionary):
 
 
 func _handle_match_start(msg: Dictionary):
+	if _client is SinglePlayerClient:
+		for player_id in _player_list:
+			MatchClient.players[player_id] = _player_list[player_id].info
+		MatchClient.load_game(MatchClient.GAME_SCENE_PATH)
+		return
+
 	if MatchClient.local_player.host:
 		for player_data in msg.get("players", []):
 			var player_id: int = player_data.get("playerId")

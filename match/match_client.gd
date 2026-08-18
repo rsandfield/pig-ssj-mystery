@@ -8,6 +8,7 @@ const SERVER_PORT = 8090
 const MATCHMAKER_ADDRESS = "http://127.0.0.1:8080" # IPv4 localhost
 const MAX_CONNECTIONS = 20
 const ICE_CONFIG = { "iceServers": [{ "urls": ["stun:stun.l.google.com:19302"] }] }
+const GAME_SCENE_PATH = "res://match/game.tscn"
 
 # This will contain player info for every player,
 # with the keys being each player's unique IDs.
@@ -132,9 +133,11 @@ func load_game(game_scene_path):
 # Every peer will call this when they have loaded the game scene.
 @rpc("any_peer", "call_local", "reliable")
 func player_loaded():
-	if multiplayer.is_server():
+	var is_offline = multiplayer.multiplayer_peer is OfflineMultiplayerPeer
+	if is_offline or multiplayer.is_server():
 		players_loaded += 1
-		if players_loaded == players.size():
+		var expected = players.values().filter(func(p): return !p.is_bot()).size()
+		if players_loaded >= expected:
 			$/root/Game.start_game()
 			players_loaded = 0
 
