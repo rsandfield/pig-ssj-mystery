@@ -1,0 +1,257 @@
+[gd_scene format=3 uid="uid://btgatj7wll0fm"]
+
+[ext_resource type="Theme" uid="uid://6wcsoq3jg0eb" path="res://assets/themes/void.tres" id="1_bfv77"]
+[ext_resource type="Texture2D" uid="uid://cekliub1icn3k" path="res://assets/map.PNG" id="2_610r7"]
+[ext_resource type="Texture2D" uid="uid://cemyfg4lbkn1d" path="res://assets/notebook_UI.png" id="3_610r7"]
+[ext_resource type="PackedScene" uid="uid://bafetgypjrae8" path="res://matchmaking/character_profile.tscn" id="4_45syu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f4owk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62tm8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r4dmw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ueomg"]
+
+[node name="Match" type="Control" unique_id=257467707]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_bfv77")
+
+[node name="Panel" type="Panel" parent="." unique_id=1526596015]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="." unique_id=296921863]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_610r7")
+
+[node name="Rooms" type="Control" parent="." unique_id=43389133]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MasterBedroom" type="Button" parent="Rooms" unique_id=495994747]
+layout_mode = 0
+offset_left = 463.0
+offset_top = 197.0
+offset_right = 495.0
+offset_bottom = 219.6129
+scale = Vector2(7.88, 5.829264)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f4owk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_62tm8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_r4dmw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ueomg")
+
+[node name="Bedroom1" type="Button" parent="Rooms" unique_id=1033061881]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 339.0
+offset_right = 498.0
+offset_bottom = 361.6129
+scale = Vector2(3.935405, 4.1140795)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f4owk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_62tm8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_r4dmw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ueomg")
+
+[node name="Bedroom2" type="Button" parent="Rooms" unique_id=1807740957]
+layout_mode = 0
+offset_left = 592.0
+offset_top = 339.0
+offset_right = 624.0
+offset_bottom = 361.6129
+scale = Vector2(3.935405, 4.1140795)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f4owk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_62tm8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_r4dmw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ueomg")
+
+[node name="Entry" type="Button" parent="Rooms" unique_id=52969076]
+layout_mode = 0
+offset_left = 353.0
+offset_top = 439.0
+offset_right = 385.0
+offset_bottom = 461.6129
+scale = Vector2(2.9311097, 4.5697136)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f4owk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_62tm8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_r4dmw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ueomg")
+
+[node name="Parlor" type="Button" parent="Rooms" unique_id=1347631508]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 439.0
+offset_right = 523.99854
+offset_bottom = 461.6129
+scale = Vector2(2.9311097, 4.5697136)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f4owk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_62tm8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_r4dmw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ueomg")
+
+[node name="DiningRoom" type="Button" parent="Rooms" unique_id=245411320]
+layout_mode = 0
+offset_left = 652.0
+offset_top = 432.0
+offset_right = 709.99854
+offset_bottom = 454.6129
+scale = Vector2(2.9311097, 4.5697136)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f4owk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_62tm8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_r4dmw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ueomg")
+
+[node name="Kitchen" type="Button" parent="Rooms" unique_id=40792203]
+layout_mode = 0
+offset_left = 922.0
+offset_top = 438.99997
+offset_right = 979.99854
+offset_bottom = 461.61288
+scale = Vector2(2.9311097, 4.5697136)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f4owk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_62tm8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_r4dmw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ueomg")
+
+[node name="Pond" type="Button" parent="Rooms" unique_id=33614990]
+layout_mode = 0
+offset_left = 745.0
+offset_top = 608.0
+offset_right = 802.99854
+offset_bottom = 630.6129
+scale = Vector2(8.162693, 3.6074378)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f4owk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_62tm8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_r4dmw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ueomg")
+
+[node name="Library" type="Button" parent="Rooms" unique_id=1394360539]
+layout_mode = 0
+offset_left = 868.0
+offset_top = 339.0
+offset_right = 924.41095
+offset_bottom = 361.6129
+scale = Vector2(3.935405, 4.1140795)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f4owk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_62tm8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_r4dmw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ueomg")
+
+[node name="Attic" type="Button" parent="Rooms" unique_id=2079810206]
+layout_mode = 0
+offset_left = 868.0
+offset_top = 188.00002
+offset_right = 900.0
+offset_bottom = 210.61292
+scale = Vector2(6.86617, 2.0456781)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f4owk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_62tm8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_r4dmw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ueomg")
+
+[node name="Study" type="Button" parent="Rooms" unique_id=1082190696]
+layout_mode = 0
+offset_left = 868.00006
+offset_top = 234.00002
+offset_right = 900.00006
+offset_bottom = 281.90588
+scale = Vector2(6.86617, 2.0456781)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f4owk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_62tm8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_r4dmw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ueomg")
+
+[node name="Observatory" type="Button" parent="Rooms" unique_id=1288892567]
+layout_mode = 0
+offset_left = 1105.0
+offset_top = 165.0
+offset_right = 1137.0
+offset_bottom = 212.90588
+scale = Vector2(2.9420254, 3.6085188)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f4owk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_62tm8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_r4dmw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ueomg")
+
+[node name="Notepad" type="Control" parent="." unique_id=733886397]
+custom_minimum_size = Vector2(340, 460)
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 597.0
+offset_right = 344.0
+offset_bottom = 1057.0
+
+[node name="TextureRect" type="TextureRect" parent="Notepad" unique_id=1307562860]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_610r7")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1760561981]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 420.0
+offset_bottom = 820.0
+scale = Vector2(0.5, 0.5)
+columns = 3
+
+[node name="CharacterProfile" parent="GridContainer" unique_id=1492699677 instance=ExtResource("4_45syu")]
+layout_mode = 2
+
+[node name="CharacterProfile2" parent="GridContainer" unique_id=1320640214 instance=ExtResource("4_45syu")]
+layout_mode = 2
+
+[node name="CharacterProfile3" parent="GridContainer" unique_id=503160773 instance=ExtResource("4_45syu")]
+layout_mode = 2
+
+[node name="CharacterProfile4" parent="GridContainer" unique_id=455243966 instance=ExtResource("4_45syu")]
+layout_mode = 2
+
+[node name="CharacterProfile5" parent="GridContainer" unique_id=1763217378 instance=ExtResource("4_45syu")]
+layout_mode = 2
+
+[node name="CharacterProfile6" parent="GridContainer" unique_id=206779197 instance=ExtResource("4_45syu")]
+layout_mode = 2
+
+[node name="CharacterProfile7" parent="GridContainer" unique_id=187765296 instance=ExtResource("4_45syu")]
+layout_mode = 2
+
+[node name="CharacterProfile8" parent="GridContainer" unique_id=1647789935 instance=ExtResource("4_45syu")]
+layout_mode = 2
+
+[node name="CharacterProfile9" parent="GridContainer" unique_id=456506845 instance=ExtResource("4_45syu")]
+layout_mode = 2
+
+[node name="CharacterProfile10" parent="GridContainer" unique_id=1203278777 instance=ExtResource("4_45syu")]
+layout_mode = 2
+
+[node name="CharacterProfile11" parent="GridContainer" unique_id=1401519138 instance=ExtResource("4_45syu")]
+layout_mode = 2
+
+[node name="CharacterProfile12" parent="GridContainer" unique_id=1009419761 instance=ExtResource("4_45syu")]
+layout_mode = 2
+
+[node name="CharacterProfile13" parent="GridContainer" unique_id=1264648450 instance=ExtResource("4_45syu")]
+layout_mode = 2
+
+[node name="CharacterProfile14" parent="GridContainer" unique_id=1787753299 instance=ExtResource("4_45syu")]
+layout_mode = 2
+
+[node name="CharacterProfile15" parent="GridContainer" unique_id=1262654119 instance=ExtResource("4_45syu")]
+layout_mode = 2

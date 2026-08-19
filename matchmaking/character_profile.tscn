@@ -75,7 +75,7 @@ expand_mode = 5
 [node name="Body" type="TextureRect" parent="Panel" unique_id=1789978865]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
-layout_mode = 0
+layout_mode = 1
 offset_left = -2.0
 offset_top = 6.0
 offset_right = 198.0
@@ -85,7 +85,7 @@ expand_mode = 5
 
 [node name="Accessory" type="TextureRect" parent="Panel" unique_id=1262918042]
 unique_name_in_owner = true
-modulate = Color(0.7058824, 0, 0, 1)
+modulate = Color(1, 0, 0, 1)
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 0
 offset_left = -2.0
